@@ -1,5 +1,4 @@
-import { buildSchemaFromTypeDefinitions } from 'apollo-server';
-import client from '../client';
+import client from '../../client';
 import bcrypt from 'bcrypt';
 
 export default {
@@ -28,7 +27,7 @@ export default {
         // hash the password
         const uglyPassword = await bcrypt.hash(password, 10);
         // save and return the user
-        return client.user.create({
+        const createdUser = await client.user.create({
           data: {
             name,
             username,
@@ -38,6 +37,16 @@ export default {
             password: uglyPassword,
           },
         });
+        if (createdUser.name) {
+          return {
+            ok: true,
+          };
+        } else {
+          return {
+            ok: false,
+            error: 'Could not create a user.',
+          };
+        }
       } catch (e) {
         return e;
       }
