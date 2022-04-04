@@ -22,6 +22,16 @@ export default {
           take: 5,
           skip: (page - 1) * 5,
         });
+      // Count total Followers
+      const totalFollowers = await client.user.count({
+        where: {
+          following: {
+            some: {
+              username,
+            },
+          },
+        },
+      });
       // Search following
       const following = await client.user
         .findUnique({ where: { username } })
@@ -29,11 +39,20 @@ export default {
           take: 5,
           skip: (page - 1) * 5,
         });
-
+      // Count total Following
+      const totalFollowing = await client.user.count({
+        where: {
+          followers: {
+            some: { username },
+          },
+        },
+      });
       return {
         ok: true,
         followers,
+        totalFollowers,
         following,
+        totalFollowing,
       };
     },
   },

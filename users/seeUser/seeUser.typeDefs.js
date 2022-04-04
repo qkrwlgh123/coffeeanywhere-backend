@@ -6,6 +6,8 @@ export default gql`
     error: String
     followers: [User]
     following: [User]
+    totalFollowers: Int
+    totalFollowing: Int
   }
   type Query {
     seeUser(username: String!, page: Int!): SeeUserResult!
