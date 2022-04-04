@@ -9,3 +9,7 @@ Nomad coffee Backend.
 - [x] Login
 - [x] Edit Profile
 - [x] Change Avatar (Image Upload)
+- [x] Follow User
+- [x] Unfollow User
+- [x] See followers, following with Offset Pagination
+- [x] Search Users
