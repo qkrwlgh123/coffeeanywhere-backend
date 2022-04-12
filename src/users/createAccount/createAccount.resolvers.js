@@ -22,7 +22,10 @@ export default {
           },
         });
         if (existingUser) {
-          throw new Error('This username/password is already taken.');
+          return {
+            ok: false,
+            error: 'This username is already exist.',
+          };
         }
         // hash the password
         const uglyPassword = await bcrypt.hash(password, 10);
