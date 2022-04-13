@@ -15,7 +15,7 @@ export default {
         categoryObj = parseCategories(caption);
 
         // create coffeeshop Data
-        return client.coffeeShop.create({
+        const shop = await client.coffeeShop.create({
           data: {
             name,
             latitude,
@@ -41,6 +41,9 @@ export default {
             }),
           },
         });
+        return {
+          ok: true,
+        };
       }
     ),
   },

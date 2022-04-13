@@ -24,7 +24,7 @@ export default {
         if (existingUser) {
           return {
             ok: false,
-            error: 'This username is already exist.',
+            error: 'This username or email is already exist.',
           };
         } else {
           const uglyPassword = await bcrypt.hash(password, 10);
