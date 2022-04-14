@@ -11,7 +11,7 @@ export default gql`
       name: String
       latitude: String
       longitude: String
-      file: String
+      file: Upload
       caption: String
     ): EditCoffeeShopResult
   }

@@ -1,3 +1,4 @@
+import { uploadToS3 } from '../../../shared/shared.utils';
 import client from '../../client';
 import { protectedResolver } from '../../users/users.utils';
 import { parseCategories } from '../coffeeShops.utils';
@@ -11,6 +12,10 @@ export default {
         { loggedInUser }
       ) => {
         let categoryObj = [];
+        let fileUrl;
+        if (file) {
+          fileUrl = await uploadToS3(file, loggedInUser.id);
+        }
         // inspect CoffeeShop with id [ o ]
         const exist = await client.coffeeShop.findUnique({
           where: { id },
@@ -49,7 +54,7 @@ export default {
             ...(file && {
               photos: {
                 create: {
-                  url: file,
+                  url: fileUrl,
                 },
               },
             }),

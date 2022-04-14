@@ -13,4 +13,26 @@ export default {
       return shopList.length;
     },
   },
+  CoffeeShop: {
+    photos: async ({ id }) => {
+      const photoList = await client.coffeeShop
+        .findUnique({
+          where: {
+            id,
+          },
+        })
+        .photos();
+      return photoList;
+    },
+    categories: async ({ id }) => {
+      const categoryList = await client.coffeeShop
+        .findUnique({
+          where: {
+            id,
+          },
+        })
+        .categories();
+      return categoryList;
+    },
+  },
 };

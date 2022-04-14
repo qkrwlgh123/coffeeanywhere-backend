@@ -11,7 +11,7 @@ export default gql`
       caption: String
       latitude: String
       longitude: String
-      file: String
+      file: Upload
     ): createShopResult
   }
 `;
