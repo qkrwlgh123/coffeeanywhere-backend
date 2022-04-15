@@ -1,7 +1,6 @@
 {
   "name": "nomadcoffee",
   "version": "1.0.0",
-  "type": "module",
   "description": "",
   "scripts": {
     "dev": "nodemon --exec babel-node src/server --delay 2s",
