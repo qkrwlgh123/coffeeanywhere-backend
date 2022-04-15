@@ -1,4 +1,4 @@
-import { uploadToS3 } from '../../../shared/shared.utils';
+import { uploadToS3 } from '../../shared/shared.utils';
 import client from '../../client';
 import { protectedResolver } from '../../users/users.utils';
 import { parseCategories } from '../coffeeShops.utils';

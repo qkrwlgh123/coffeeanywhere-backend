@@ -1,8 +1,8 @@
 import { protectedResolver } from '../users.utils';
 import bcrypt from 'bcrypt';
 import client from '../../client';
-import fs from 'fs';
-import { uploadPhoto } from '../../../shared/shared.utils';
+
+import { uploadToS3 } from '../../shared/shared.utils';
 
 export default {
   Mutation: {
