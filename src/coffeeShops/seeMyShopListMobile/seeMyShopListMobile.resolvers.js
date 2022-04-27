@@ -2,8 +2,10 @@ import client from '../../client';
 
 export default {
   Query: {
-    seeMyShopList: (_, {}, { loggedInUser }) =>
+    seeMyShopListMobile: (_, { offset }, { loggedInUser }) =>
       client.coffeeShop.findMany({
+        take: 3,
+        skip: offset,
         where: {
           userId: loggedInUser.id,
         },
