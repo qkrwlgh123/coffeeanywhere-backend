@@ -35,7 +35,7 @@ export default {
             // get or create categories
             ...(categoryObj.length > 0 && {
               categories: {
-                connectOrCreate: categoryObj,
+                create: categoryObj,
               },
             }),
             // upload photo(arg name = file)

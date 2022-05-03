@@ -50,7 +50,7 @@ model CoffeeShopPhoto {
 
 model Category {
   id        Int          @id @default(autoincrement())
-  name      String       @unique
+  name      String
   slug      String?
   shops     CoffeeShop[]
   createdAt DateTime     @default(now())
