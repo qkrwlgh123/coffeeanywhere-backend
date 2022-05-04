@@ -20,6 +20,5 @@ export const uploadToS3 = async (file, userId) => {
     })
     .promise();
 
-  console.log(upload);
   return upload.Location;
 };
