@@ -1,6 +1,5 @@
 import client from '../../client';
 import { uploadToS3 } from '../../shared/shared.utils';
-import { protectedResolver } from '../../users/users.utils';
 
 export default {
   Mutation: {

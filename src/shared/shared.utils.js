@@ -22,3 +22,20 @@ export const uploadToS3 = async (file, userId) => {
 
   return upload.Location;
 };
+
+export const deleteFromS3 = async (fileUrl) => {
+  const filePath = fileUrl.split('/uploads/')[1];
+  const params = {
+    Bucket: 'nomadcoffee1024-uploads/uploads',
+    Key: filePath,
+  };
+  await new AWS.S3()
+    .deleteObject(params, (error, data) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(data);
+      }
+    })
+    .promise();
+};
