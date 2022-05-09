@@ -11,6 +11,7 @@ export default gql`
       caption: String
       latitude: String
       longitude: String
+      description: String
       file: Upload
     ): createShopResult
   }
