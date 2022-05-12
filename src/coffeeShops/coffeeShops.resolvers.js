@@ -34,5 +34,15 @@ export default {
         .categories();
       return categoryList;
     },
+    user: async ({ id }) => {
+      const user = await client.coffeeShop
+        .findFirst({
+          where: {
+            id,
+          },
+        })
+        .user();
+      return user;
+    },
   },
 };

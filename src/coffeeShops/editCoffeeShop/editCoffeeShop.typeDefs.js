@@ -13,6 +13,7 @@ export default gql`
       longitude: String
       file: Upload
       caption: String
+      open: Boolean
     ): EditCoffeeShopResult
   }
 `;

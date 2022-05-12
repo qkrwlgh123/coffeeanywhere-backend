@@ -7,6 +7,7 @@ export default gql`
     latitude: String
     longitude: String
     description: String
+    open: Boolean
     user: User
     photos: [CoffeeShopPhoto]
     categories: [Category]

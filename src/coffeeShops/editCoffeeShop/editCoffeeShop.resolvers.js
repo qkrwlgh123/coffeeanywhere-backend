@@ -8,7 +8,7 @@ export default {
     editCoffeeShop: protectedResolver(
       async (
         _,
-        { id, name, latitude, longitude, file, caption },
+        { id, name, latitude, longitude, file, open, caption },
         { loggedInUser }
       ) => {
         let categoryObj = [];
@@ -51,6 +51,7 @@ export default {
             name,
             latitude,
             longitude,
+            open,
             ...(file && {
               photos: {
                 create: {

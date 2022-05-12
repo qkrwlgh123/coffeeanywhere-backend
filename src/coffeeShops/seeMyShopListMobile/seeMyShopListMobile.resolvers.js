@@ -4,7 +4,7 @@ export default {
   Query: {
     seeMyShopListMobile: (_, { offset }, { loggedInUser }) =>
       client.coffeeShop.findMany({
-        take: 3,
+        take: 4,
         skip: offset,
         where: {
           userId: loggedInUser.id,
