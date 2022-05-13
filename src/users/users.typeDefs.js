@@ -12,6 +12,7 @@ export default gql`
     following: [User]
     followers: [User]
     CoffeeShop: [CoffeeShop]
+    reply: [Reply]
     createdAt: String!
     updatedAt: String!
   }

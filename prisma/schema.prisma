@@ -22,8 +22,10 @@ model User {
   following      User[]       @relation("FollowRelation", references: [id])
   followers      User[]       @relation("FollowRelation", references: [id])
   coffeeShop     CoffeeShop[]
+  reply          Reply[]
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
+
 }
 
 model CoffeeShop {
@@ -37,6 +39,7 @@ model CoffeeShop {
   userId      Int
   photos      CoffeeShopPhoto[]
   categories  Category[]
+  replys      Reply[]
   createdAt   DateTime          @default(now())
   updatedAt   DateTime          @updatedAt
 }
@@ -57,4 +60,15 @@ model Category {
   shops     CoffeeShop[]
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
+}
+
+model Reply {
+  id           Int         @id @default(autoincrement())
+  content      String?
+  user         User?       @relation(fields: [userId], references: [id])
+  userId       Int?
+  coffeeShop   CoffeeShop? @relation(fields: [coffeeShopId], references: [id])
+  coffeeShopId Int?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
 }

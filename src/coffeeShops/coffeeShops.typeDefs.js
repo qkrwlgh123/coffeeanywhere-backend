@@ -11,6 +11,7 @@ export default gql`
     user: User
     photos: [CoffeeShopPhoto]
     categories: [Category]
+    replys: [Reply]
   }
   type CoffeeShopPhoto {
     id: Int
@@ -23,5 +24,12 @@ export default gql`
     slug: String
     shops: [CoffeeShop]
     totalShops: Int
+  }
+  type Reply {
+    id: Int!
+    content: String
+    user: User
+    coffeeShop: CoffeeShop
+    createdAt: String
   }
 `;
