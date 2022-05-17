@@ -12,6 +12,8 @@ export default gql`
     photos: [CoffeeShopPhoto]
     categories: [Category]
     replys: [Reply]
+    likes: [Like]
+    isLike: Boolean
   }
   type CoffeeShopPhoto {
     id: Int
@@ -31,5 +33,11 @@ export default gql`
     user: User
     coffeeShop: CoffeeShop
     createdAt: String
+  }
+  type Like {
+    id: Int!
+    like: Boolean
+    user: User
+    coffeeShop: CoffeeShop
   }
 `;

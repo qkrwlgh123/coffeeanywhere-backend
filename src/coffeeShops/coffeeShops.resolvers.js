@@ -54,6 +54,29 @@ export default {
         .replys();
       return replys;
     },
+    likes: async ({ id }) => {
+      const likes = await client.coffeeShop
+        .findUnique({
+          where: {
+            id,
+          },
+        })
+        .likes();
+      return likes;
+    },
+    isLike: async ({ id }, {}, { loggedInUser }) => {
+      const like = await client.like.findFirst({
+        where: {
+          coffeeShopId: id,
+          userId: loggedInUser.id,
+        },
+      });
+      if (like) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   Reply: {
     user: async ({ id }) => {
@@ -66,6 +89,18 @@ export default {
         })
         .user();
       return reply;
+    },
+  },
+  Like: {
+    user: async ({ id }) => {
+      const like = await client.like
+        .findUnique({
+          where: {
+            id,
+          },
+        })
+        .user();
+      return like;
     },
   },
 };

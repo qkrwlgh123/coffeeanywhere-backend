@@ -13,6 +13,7 @@ export default gql`
     followers: [User]
     CoffeeShop: [CoffeeShop]
     reply: [Reply]
+    likes: [Like]
     createdAt: String!
     updatedAt: String!
   }
