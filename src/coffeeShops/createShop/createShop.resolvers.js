@@ -1,4 +1,4 @@
-import { uploadToS3 } from '../../shared/shared.utils';
+import { uploadAllToS3, uploadToS3 } from '../../shared/shared.utils';
 import client from '../../client';
 import { protectedResolver } from '../../users/users.utils';
 import { parseCategories } from '../coffeeShops.utils';
@@ -14,9 +14,8 @@ export default {
         // upload a photo
         let fileUrl;
         if (file) {
-          fileUrl = await uploadToS3(file, loggedInUser.id);
+          fileUrl = await uploadAllToS3(file, loggedInUser.id);
         }
-
         // parse categories from caption(ok)
         let categoryObj = [];
         categoryObj = parseCategories(caption);
@@ -40,11 +39,9 @@ export default {
               },
             }),
             // upload photo(arg name = file)
-            ...(file && {
+            ...(fileUrl.length > 0 && {
               photos: {
-                create: {
-                  url: fileUrl,
-                },
+                create: fileUrl,
               },
             }),
           },
