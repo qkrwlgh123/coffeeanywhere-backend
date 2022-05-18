@@ -43,7 +43,7 @@ export const uploadAllToS3 = async (files, userId) => {
 };
 
 export const deleteFromS3 = async (fileUrl) => {
-  const filePath = fileUrl.split('/uploads/')[1];
+  const filePath = await fileUrl.split('/uploads/')[1];
   const params = {
     Bucket: 'nomadcoffee1024-uploads/uploads',
     Key: filePath,
@@ -61,7 +61,7 @@ export const deleteFromS3 = async (fileUrl) => {
 
 export const deleteAllFromS3 = async (urls) => {
   for (let i in urls) {
-    const filePath = urls[i].url.split('/uploads/')[1];
+    const filePath = await urls[i].url.split('/uploads/')[1];
     const params = {
       Bucket: 'nomadcoffee1024-uploads/uploads',
       Key: filePath,
