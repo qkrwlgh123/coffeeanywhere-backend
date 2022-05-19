@@ -8,7 +8,7 @@ export default {
     createShop: protectedResolver(
       async (
         _,
-        { name, caption, latitude, longitude, description, file },
+        { name, caption, latitude, longitude, description, open, file },
         { loggedInUser }
       ) => {
         // upload a photo
@@ -27,6 +27,7 @@ export default {
             latitude,
             longitude,
             description,
+            open,
             user: {
               connect: {
                 id: loggedInUser.id,

@@ -68,7 +68,7 @@ export default {
       const like = await client.like.findFirst({
         where: {
           coffeeShopId: id,
-          userId: loggedInUser.id,
+          userId: loggedInUser?.id,
         },
       });
       if (like) {

@@ -48,7 +48,7 @@ export const deleteFromS3 = async (fileUrl) => {
     Bucket: 'nomadcoffee1024-uploads/uploads',
     Key: filePath,
   };
-  await new AWS.S3()
+  const deleteFile = await new AWS.S3()
     .deleteObject(params, (error, data) => {
       if (error) {
         console.log(error);
@@ -66,12 +66,12 @@ export const deleteAllFromS3 = async (urls) => {
       Bucket: 'nomadcoffee1024-uploads/uploads',
       Key: filePath,
     };
-    await new AWS.S3()
+    const deleteFile = await new AWS.S3()
       .deleteObject(params, (error, data) => {
         if (error) {
-          // console.log('에러', error);
+          console.log('에러', error);
         } else {
-          // console.log('삭제됨', data);
+          console.log('삭제됨', data);
         }
       })
       .promise();
