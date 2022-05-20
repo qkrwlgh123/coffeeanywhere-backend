@@ -13,6 +13,7 @@ export default gql`
       longitude: String
       description: String
       open: Boolean
+      address: String
       file: [Upload]
     ): createShopResult
   }

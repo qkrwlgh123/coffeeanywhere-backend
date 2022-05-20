@@ -5,7 +5,7 @@ export default {
     seeProfile: (_, { username, page }, { loggedInUser }) =>
       client.user.findUnique({
         where: {
-          id: loggedInUser.id,
+          id: loggedInUser?.id,
         },
       }),
   },
