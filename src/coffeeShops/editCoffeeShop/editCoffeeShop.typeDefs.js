@@ -8,12 +8,10 @@ export default gql`
   type Mutation {
     editCoffeeShop(
       id: Int!
-      name: String
-      latitude: String
-      longitude: String
-      file: Upload
       caption: String
+      description: String
       open: Boolean
+      file: [Upload]
     ): EditCoffeeShopResult
   }
 `;

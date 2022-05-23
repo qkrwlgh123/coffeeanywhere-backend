@@ -1,4 +1,8 @@
-import { uploadToS3 } from '../../shared/shared.utils';
+import {
+  deleteAllFromS3,
+  uploadAllToS3,
+  uploadToS3,
+} from '../../shared/shared.utils';
 import client from '../../client';
 import { protectedResolver } from '../../users/users.utils';
 import { parseCategories } from '../coffeeShops.utils';
@@ -6,16 +10,8 @@ import { parseCategories } from '../coffeeShops.utils';
 export default {
   Mutation: {
     editCoffeeShop: protectedResolver(
-      async (
-        _,
-        { id, name, latitude, longitude, file, open, caption },
-        { loggedInUser }
-      ) => {
-        let categoryObj = [];
+      async (_, { id, caption, description, open, file }, { loggedInUser }) => {
         let fileUrl;
-        if (file) {
-          fileUrl = await uploadToS3(file, loggedInUser.id);
-        }
         // inspect CoffeeShop with id [ o ]
         const exist = await client.coffeeShop.findUnique({
           where: { id },
@@ -39,30 +35,42 @@ export default {
           };
         }
         // if caption is exist, Parse category from caption
+        let categoryObj = [];
         if (caption) {
           categoryObj = parseCategories(caption);
         }
+
         // update information in CoffeeShop
+
         await client.coffeeShop.update({
           where: {
             id,
           },
           data: {
-            name,
-            latitude,
-            longitude,
+            description,
             open,
-            ...(file && {
-              photos: {
-                create: {
-                  url: fileUrl,
-                },
+            // ...(file.length === 0 && {
+            //   photos: {
+            //     deleteMany: exist.photos,
+            //   },
+            // }),
+            // ...(fileUrl.length > 0 && {
+            //   photos: {
+            //     deleteMany: exist.photos,
+            //     create: fileUrl,
+            //   },
+            // }),
+            ...(categoryObj.length === 0 && {
+              categories: {
+                deleteMany: exist.categories,
               },
             }),
-            categories: {
-              disconnect: exist.categories,
-              connectOrCreate: categoryObj,
-            },
+            ...(categoryObj.length > 0 && {
+              categories: {
+                deleteMany: exist.categories,
+                create: categoryObj,
+              },
+            }),
           },
         });
         return {

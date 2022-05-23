@@ -2,7 +2,7 @@ import client from '../../client';
 
 export default {
   Query: {
-    seeUser: async (_, { username, page }) => {
+    seeUser: async (_, { username }) => {
       // User checking
       const exist = await client.user.findUnique({
         where: {
@@ -15,13 +15,18 @@ export default {
           error: 'That user does not exist.',
         };
       }
+      // search User's shops
+      const shopList = await client.user
+        .findUnique({
+          where: {
+            username,
+          },
+        })
+        .coffeeShop();
       // Search followers
       const followers = await client.user
         .findUnique({ where: { username } })
-        .followers({
-          take: 5,
-          skip: (page - 1) * 5,
-        });
+        .followers({});
       // Count total Followers
       const totalFollowers = await client.user.count({
         where: {
@@ -35,10 +40,7 @@ export default {
       // Search following
       const following = await client.user
         .findUnique({ where: { username } })
-        .following({
-          take: 5,
-          skip: (page - 1) * 5,
-        });
+        .following({});
       // Count total Following
       const totalFollowing = await client.user.count({
         where: {
@@ -50,6 +52,8 @@ export default {
       return {
         ok: true,
         followers,
+        user: exist,
+        shop: shopList,
         totalFollowers,
         following,
         totalFollowing,
