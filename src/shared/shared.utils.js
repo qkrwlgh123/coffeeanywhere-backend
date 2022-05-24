@@ -5,6 +5,7 @@ AWS.config.update({
     accessKeyId: process.env.AWS_KEY,
     secretAccessKey: process.env.AWS_SECRET,
   },
+  region: 'ap-northeast-2',
 });
 
 export const uploadToS3 = async (file, userId) => {
@@ -21,6 +22,23 @@ export const uploadToS3 = async (file, userId) => {
     .promise();
 
   return upload.Location;
+};
+
+export const deleteFromS3 = async (fileUrl) => {
+  const filePath = decodeURI(fileUrl).split('/uploads/')[1];
+  const params = {
+    Bucket: 'nomadcoffee1024-uploads/uploads',
+    Key: filePath,
+  };
+  await new AWS.S3()
+    .deleteObject(params, (error, data) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(data);
+      }
+    })
+    .promise();
 };
 
 export const uploadAllToS3 = async (files, userId) => {
@@ -42,38 +60,24 @@ export const uploadAllToS3 = async (files, userId) => {
   return locationArr;
 };
 
-export const deleteFromS3 = async (fileUrl) => {
-  const filePath = await fileUrl.split('/uploads/')[1];
+export const deleteAllFromS3 = async (urls) => {
+  urls = await urls.map((item) => ({
+    Key: `uploads/${decodeURI(item.url).split('/uploads/')[1]}`,
+  }));
+
   const params = {
-    Bucket: 'nomadcoffee1024-uploads/uploads',
-    Key: filePath,
+    Bucket: 'nomadcoffee1024-uploads',
+    Delete: {
+      Objects: urls,
+    },
   };
-  const deleteFile = await new AWS.S3()
-    .deleteObject(params, (error, data) => {
+  await new AWS.S3()
+    .deleteObjects(params, (error, data) => {
       if (error) {
-        console.log(error);
+        console.log('에러', error);
       } else {
-        console.log(data);
+        console.log('삭제됨', data);
       }
     })
     .promise();
-};
-
-export const deleteAllFromS3 = async (urls) => {
-  for (let i in urls) {
-    const filePath = await urls[i].url.split('/uploads/')[1];
-    const params = {
-      Bucket: 'nomadcoffee1024-uploads/uploads',
-      Key: filePath,
-    };
-    const deleteFile = await new AWS.S3()
-      .deleteObject(params, (error, data) => {
-        if (error) {
-          console.log('에러', error);
-        } else {
-          console.log('삭제됨', data);
-        }
-      })
-      .promise();
-  }
 };

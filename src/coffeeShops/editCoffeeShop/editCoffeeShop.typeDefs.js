@@ -12,6 +12,7 @@ export default gql`
       description: String
       open: Boolean
       file: [Upload]
+      deleteFromS3: [String]
     ): EditCoffeeShopResult
   }
 `;
