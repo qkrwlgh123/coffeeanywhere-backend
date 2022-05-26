@@ -65,7 +65,6 @@ export default {
         }
 
         // update information in CoffeeShop
-        console.log('삭제잘댐', exist.photos, '삭제안댐', deleteFromS3);
 
         await client.coffeeShop.update({
           where: {

@@ -64,6 +64,7 @@ export default {
         .likes();
       return likes;
     },
+
     isLike: async ({ id }, {}, { loggedInUser }) => {
       const like = await client.like.findFirst({
         where: {

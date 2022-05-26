@@ -12,6 +12,9 @@ export default {
               },
             },
           },
+          name: {
+            startsWith: keyword,
+          },
         },
       }),
   },
