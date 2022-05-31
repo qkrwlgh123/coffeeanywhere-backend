@@ -15,6 +15,8 @@ export default gql`
     replys: [Reply]
     likes: [Like]
     isLike: Boolean
+    createdAt: String
+    updatedAt: String
   }
   type CoffeeShopPhoto {
     id: Int
