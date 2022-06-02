@@ -17,6 +17,11 @@ export default {
           coffeeShopId: id,
         },
       });
+      await client.like.deleteMany({
+        where: {
+          coffeeShopId: id,
+        },
+      });
       await client.coffeeShop.delete({
         where: {
           id,

@@ -103,5 +103,15 @@ export default {
         .user();
       return like;
     },
+    coffeeShop: async ({ id }) => {
+      const shop = await client.like
+        .findUnique({
+          where: {
+            id,
+          },
+        })
+        .coffeeShop();
+      return shop;
+    },
   },
 };

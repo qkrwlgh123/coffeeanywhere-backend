@@ -2,34 +2,38 @@ import client from '../../client';
 
 export default {
   Query: {
-    seeUser: async (_, { username }) => {
+    seeMyProfile: async (_, { username }, { loggedInUser }) => {
       // User checking
       const exist = await client.user.findUnique({
         where: {
-          username,
+          id: loggedInUser.id,
         },
       });
       if (!exist) {
         return {
           ok: false,
-          error: 'That user does not exist.',
+          error: 'Please Log in.',
         };
       }
       // search User's shops
       const shopList = await client.user
         .findUnique({
           where: {
-            username,
+            id: loggedInUser.id,
           },
         })
-        .coffeeShop({
+        .coffeeShop();
+      // search User's likes
+      const likes = await client.user
+        .findUnique({
           where: {
-            open: true,
+            id: loggedInUser.id,
           },
-        });
+        })
+        .likes();
       // Search followers
       const followers = await client.user
-        .findUnique({ where: { username } })
+        .findUnique({ where: { id: loggedInUser.id } })
         .followers({});
       // Count total Followers
       const totalFollowers = await client.user.count({
@@ -43,7 +47,7 @@ export default {
       });
       // Search following
       const following = await client.user
-        .findUnique({ where: { username } })
+        .findUnique({ where: { id: loggedInUser.id } })
         .following({});
       // Count total Following
       const totalFollowing = await client.user.count({
@@ -57,6 +61,7 @@ export default {
         ok: true,
         followers,
         user: exist,
+        likes,
         shop: shopList,
         totalFollowers,
         following,
