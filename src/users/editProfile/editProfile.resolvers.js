@@ -9,15 +9,7 @@ export default {
     editProfile: protectedResolver(
       async (
         _,
-        {
-          name,
-          username,
-          email,
-          password: newPassword,
-          location,
-          githubUsername,
-          avatar,
-        },
+        { name, username, email, description, password: newPassword, avatar },
         { loggedInUser }
       ) => {
         // change the avatar
@@ -37,6 +29,7 @@ export default {
             username,
             email,
             githubUsername,
+            description,
             location,
             ...(uglyPassword && { password: uglyPassword }),
             ...(avatarUrl && { avatar: avatarUrl }),

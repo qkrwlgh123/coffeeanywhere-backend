@@ -6,7 +6,7 @@ export default {
   Mutation: {
     createAccount: async (
       _,
-      { name, username, email, location, avatar, password }
+      { name, username, email, description, avatar, password }
     ) => {
       try {
         // check if username or email are already on DB.
@@ -40,8 +40,8 @@ export default {
               name,
               username,
               email,
+              description,
               avatar: avatarUrl,
-              location,
               password: uglyPassword,
             },
           });

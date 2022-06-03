@@ -9,8 +9,8 @@ export default gql`
     createAccount(
       name: String!
       username: String!
+      description: String
       email: String!
-      location: String
       avatar: Upload
       password: String!
     ): createAccountResult!
