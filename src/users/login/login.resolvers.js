@@ -10,7 +10,7 @@ export default {
       if (!user) {
         return {
           ok: false,
-          error: 'User not found.',
+          error: '존재하지 않는 사용자 이름입니다.',
         };
       }
       // check password with args.password
@@ -18,7 +18,7 @@ export default {
       if (!passwordOk) {
         return {
           ok: false,
-          error: 'Incorrect password.',
+          error: '비밀번호가 틀립니다.',
         };
       }
       // issue a token and send it to the user
