@@ -7,8 +7,6 @@ export default gql`
   }
   type Mutation {
     editProfile(
-      id: String
-      name: String
       username: String
       email: String
       description: String
