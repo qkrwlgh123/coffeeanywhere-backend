@@ -2,6 +2,10 @@
   "name": "nomadcoffee",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "16.13.0",
+    "npm": "8.1.0"
+  },
   "scripts": {
     "dev": "nodemon --exec babel-node src/server --delay 2s",
     "migrate": "npx prisma migrate dev --preview-feature",
@@ -12,15 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qkrwlgh123/nomadcoffee-backend.git"
+    "url": "git+https://github.com/qkrwlgh123/coffeeanywhere-backend.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/qkrwlgh123/nomadcoffee-backend/issues"
+    "url": "https://github.com/qkrwlgh123/coffeeanywhere-backend/issues"
   },
-  "homepage": "https://github.com/qkrwlgh123/nomadcoffee-backend#readme",
+  "homepage": "https://github.com/qkrwlgh123/coffeeanywhere-backend#readme",
   "dependencies": {
     "@babel/cli": "^7.17.6",
     "@prisma/client": "^3.11.1",
