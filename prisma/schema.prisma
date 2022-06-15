@@ -38,6 +38,7 @@ model CoffeeShop {
   address     String?
   user        User              @relation(fields: [userId], references: [id])
   userId      Int
+  isMe        Boolean?          @default(false)
   photos      CoffeeShopPhoto[]
   categories  Category[]
   replys      Reply[]

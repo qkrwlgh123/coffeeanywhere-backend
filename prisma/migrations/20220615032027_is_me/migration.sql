@@ -1,0 +1,11 @@
+/*
+  Warnings:
+
+  - You are about to drop the column `location` on the `User` table. All the data in the column will be lost.
+
+*/
+-- AlterTable
+ALTER TABLE "CoffeeShop" ADD COLUMN     "isMe" BOOLEAN;
+
+-- AlterTable
+ALTER TABLE "User" DROP COLUMN "location";

@@ -78,6 +78,18 @@ export default {
         return false;
       }
     },
+    isMe: async ({ id }, {}, { loggedInUser }) => {
+      const shop = await client.coffeeShop.findUnique({
+        where: {
+          id,
+        },
+      });
+      if (shop.userId === loggedInUser.id) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   Reply: {
     user: async ({ id }) => {

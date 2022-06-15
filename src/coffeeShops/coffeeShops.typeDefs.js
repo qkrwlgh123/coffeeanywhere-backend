@@ -10,6 +10,7 @@ export default gql`
     open: Boolean
     address: String
     user: User
+    isMe: Boolean
     photos: [CoffeeShopPhoto]
     categories: [Category]
     replys: [Reply]
