@@ -84,11 +84,14 @@ export default {
           id,
         },
       });
-      if (shop.userId === loggedInUser.id) {
-        return true;
-      } else {
-        return false;
+      if (loggedInUser) {
+        if (shop.userId === loggedInUser.id) {
+          return true;
+        } else {
+          return false;
+        }
       }
+      return false;
     },
   },
   Reply: {
