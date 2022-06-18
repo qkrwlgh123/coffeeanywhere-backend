@@ -35,8 +35,10 @@ export default gql`
     id: Int!
     content: String
     user: User
+    isMe: Boolean
     coffeeShop: CoffeeShop
     createdAt: String
+    updatedAt: String
   }
   type Like {
     id: Int!

@@ -106,6 +106,21 @@ export default {
         .user();
       return reply;
     },
+    isMe: async ({ id }, {}, { loggedInUser }) => {
+      const reply = await client.reply.findUnique({
+        where: {
+          id,
+        },
+      });
+      if (loggedInUser) {
+        if (reply.userId === loggedInUser.id) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      return false;
+    },
   },
   Like: {
     user: async ({ id }) => {
