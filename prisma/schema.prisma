@@ -18,6 +18,7 @@ model User {
   password    String
   avatar      String?
   description String?
+  isKaKao     Boolean?     @default(false)
   following   User[]       @relation("FollowRelation", references: [id])
   followers   User[]       @relation("FollowRelation", references: [id])
   coffeeShop  CoffeeShop[]

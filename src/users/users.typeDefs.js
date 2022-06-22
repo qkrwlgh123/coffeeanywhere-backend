@@ -8,6 +8,7 @@ export default gql`
     email: String!
     avatar: String
     description: String
+    isKaKao: Boolean
     following: [User]
     followers: [User]
     CoffeeShop: [CoffeeShop]
